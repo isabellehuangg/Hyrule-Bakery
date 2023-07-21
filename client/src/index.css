@@ -55,16 +55,3 @@
 .description {
   margin-top: 0.5rem;
 }
-
-.submit {
-  padding: 0.3rem;
-  border: 1.5px solid #26887d;
-  border-radius: 0.25rem;
-  background-color: #26887d;
-  color: #ebf1e6;
-}
-
-.submit:hover {
-  transform: scale(1.05);
-  transition-duration: 0.2s;
-}

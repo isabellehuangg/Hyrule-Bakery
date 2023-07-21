@@ -9,7 +9,6 @@ const Home = () => {
             <h2 className="title">Hyrule Bakery</h2>
             <p className="description">Predict your next dessert</p>
             <input className="search" type="text" placeholder="Search (e.g. Sugar Cane)" />
-            <button className="submit">Submit</button>
         </div>
     );
 }
