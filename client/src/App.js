@@ -1,6 +1,7 @@
 import React from 'react';
-import Home from "./Search";
+import Home from "./Home";
 import Navbar from "./Navbar";
+import Bookmarks from "./Bookmarks";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/Bookmarks" element={<Bookmarks />} />
         </Routes>
       </Router>
     </div>

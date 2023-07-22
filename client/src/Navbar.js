@@ -3,7 +3,7 @@ const Navbar = () => {
         <div className="navbar">
             <div className="links">
                 <a href = "/">Home</a>
-                <a href = "/About">About</a>
+                <a href = "/Bookmarks">Bookmarks</a>
             </div>
         </div>
     );

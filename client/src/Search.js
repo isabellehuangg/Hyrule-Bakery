@@ -1,16 +1,27 @@
-import { useState } from "react";
+const searchBar = () => {
+    const ingredients = ['Wheat', 'Sugar', 'Apple'];
+    const [input, setInput] = useState('');
+    const [autoOptions, setAutoOptions] = useState([]); // Auto options: all possible verified options in input
 
-const Home = () => {
-    // Initialized dynamic ingredient tracker 
-    const [ingredients, setIngredients] = useState(0);
+    // Function for onChange event
+    const handleOnChange = (e) => {
+        const userInput = e.target.trim().toLowerCase(); 
+        setInput(userInput);
+        const matchingIngredients = ingredients.filter((ingredient) => {
+            ingredient.startsWith(userInput);
+        });
+        setAutoOptions(matchingIngredients);
+    };
+
+    // Handle choosing one of the matching ingredients (selected: ingredient from handleOnChange)
+    const chooseOne = (ingredient) => {
+        setInput(ingredient);
+        setAutoOptions([]);
+    };
 
     return (  
-        <div className="home">
-            <h2 className="title">Hyrule Bakery</h2>
-            <p className="description">Predict your next dessert</p>
-            <input className="search" type="text" placeholder="Search (e.g. Sugar Cane)" />
-        </div>
+        <input className="search" type="text" placeholder="Search (e.g. Sugar Cane)" />
     );
 }
  
-export default Home;
+export default searchBar;

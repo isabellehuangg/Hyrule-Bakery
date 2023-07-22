@@ -5,6 +5,13 @@
   font-family: 'Work Sans', sans-serif;
 }
 
+.about {
+  padding: 1rem;
+  align-items: center;
+  max-width: 95%;
+  margin: 0 auto;
+}
+
 .navbar {
   padding: 1rem;
   display: flex;
@@ -23,8 +30,10 @@
   text-decoration: none;
   padding: 6px;
 }
+
 .navbar a:hover {
-  color: #56b4a1;
+  color: #5bc0ac;
+  text-decoration: underline;
 }
 
 .home {
