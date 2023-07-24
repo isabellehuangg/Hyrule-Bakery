@@ -64,3 +64,25 @@
 .description {
   margin-top: 0.5rem;
 }
+
+input {
+  width: 80%
+}
+
+.option {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  text-decoration: 1px underline;
+  font-size: 0.75rem;
+  padding: 0.25rem;
+}
+
+.option:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.optionButtons {
+  display: flex;
+  flex-direction: row;
+}
