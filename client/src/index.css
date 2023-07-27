@@ -43,14 +43,6 @@
   align-items: center;
 }
 
-.search {
-  margin: 0.5rem;
-  padding: 0.75rem;
-  border: 1.5px solid #ebf1e6;
-  border-radius: 0.25rem;
-  font-size: 0.9rem;
-}
-
 .search:focus {
   outline: #ebf1e6;
 }
@@ -62,10 +54,6 @@
 
 .description {
   margin-top: 0.5rem;
-}
-
-input {
-  width: 80%
 }
 
 .option {
@@ -115,4 +103,12 @@ input {
   flex-direction: row;
   border: 1.5px solid #26887d;
   border-radius: 0.25rem;
+}
+
+.search {
+  margin: 0.5rem;
+  padding: 0.25rem;
+  border: 1.5px solid #ebf1e6;
+  border-radius: 0.25rem;
+  font-size: 0.9rem;
 }
