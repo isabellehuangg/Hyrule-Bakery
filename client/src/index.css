@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700&display=swap');
 * {
-  background-color: #ebf1e6;
+  background-color: #ebf1e6; 
   color: #26887d;
   font-family: 'Work Sans', sans-serif;
 }
@@ -44,16 +44,15 @@
 }
 
 .search {
-  width: 80%;
   margin: 0.5rem;
   padding: 0.75rem;
-  border: 1.5px solid #26887d;
+  border: 1.5px solid #ebf1e6;
   border-radius: 0.25rem;
   font-size: 0.9rem;
 }
 
 .search:focus {
-  outline: #26887d;
+  outline: #ebf1e6;
 }
 
 .title {
@@ -73,7 +72,7 @@ input {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
   text-decoration: 1px underline;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   padding: 0.25rem;
 }
 
@@ -85,4 +84,35 @@ input {
 .optionButtons {
   display: flex;
   flex-direction: row;
+}
+
+.closeButton {
+  border: 1px solid;
+  color: #ebf1e6;
+  background-color: #26887d;
+  border-radius: 0.75rem;
+  margin-left: 0.5rem;
+  font-size: 0.625rem;
+}
+
+.closeButton:hover {
+  cursor: pointer;
+}
+
+.selectedIngredient {
+  display: flex;
+  align-items: center;
+  background-color: #26887d;
+  padding: 0.5rem;
+  color: #ebf1e6;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  margin: 0.25rem;
+}
+
+.searchBar {
+  display: flex;
+  flex-direction: row;
+  border: 1.5px solid #26887d;
+  border-radius: 0.25rem;
 }
