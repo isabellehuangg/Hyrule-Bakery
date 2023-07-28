@@ -21,19 +21,28 @@ const Home = () => {
         setSelectedIngredients((pastIngredients) => [...pastIngredients, ingredient]);
     };
 
-    const removeOption = (ingredientToRemove) => {
+    const removeOption = (indexToRemove) => {
         setSelectedIngredients((pastIngredients) =>
-            pastIngredients.filter((ingredient) => ingredient !== ingredientToRemove)
+            pastIngredients.filter((_, index) => index !== indexToRemove)
         );
     };
 
     const displaySelectedIngredients = () => {
-        return selectedIngredients.map((ingredient) => (
-            <div key={ingredient} className="selectedIngredient">
+        // index is provided from the map function
+        return selectedIngredients.map((ingredient, index) => (
+            <div key={index} className="selectedIngredient">
                 {ingredient}
-                <button onClick={() => removeOption(ingredient)} className="closeButton">X</button>
+                <button onClick={() => removeOption(index)} className="closeButton">X</button>
             </div>
         ));
+    };
+
+    const placeHolder = () => {
+        if (selectedIngredients.length < 5) {
+            return 'Search...';
+        } else {
+            return '';
+        }
     };
 
     return (  
@@ -42,7 +51,11 @@ const Home = () => {
             <p className="description">Predict your next dessert, bookmark favorite recipes</p>
             <div className="searchBar">
                 {displaySelectedIngredients()}
-                <input className="search" type="text" placeholder="Search (e.g. Wheat)" value={input} onChange={handleInput} />
+                {
+                    selectedIngredients.length < 5 && (
+                        <input className="search" type="text" placeholder={placeHolder()} value={input} onChange={handleInput} />
+                    )
+                }
             </div>
             {
                 // Display Ingredients as buttons under the search bar when Ingredients length < 6
