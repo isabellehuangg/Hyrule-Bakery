@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@100;200;300;400;500;600;700&display=swap');
+
+:root {
+  --white: #fff;
+  --kindawhite: #ebf1e6;
+  --green: #26887d;
+  --lightergreen: #56b4a1;
+}
+
 * {
-  background-color: #ebf1e6; 
-  color: #26887d;
+  background-color: var(--kindawhite); 
+  color: var(--green);
   font-family: 'Work Sans', sans-serif;
 }
 
@@ -18,7 +26,7 @@
   align-items: center;
   max-width: 95%;
   margin: 0 auto;
-  border-bottom: 1px solid #56b4a1;
+  border-bottom: 1px solid var(--lightergreen);
 }
 
 .navbar .links {
@@ -32,7 +40,7 @@
 }
 
 .navbar a:hover {
-  color: #5bc0ac;
+  color: var(--lightergreen);
   text-decoration: underline;
 }
 
@@ -44,7 +52,7 @@
 }
 
 .search:focus {
-  outline: #ebf1e6;
+  outline: var(--kindawhite);
 }
 
 .title {
@@ -54,6 +62,7 @@
 
 .description {
   margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .option {
@@ -76,8 +85,8 @@
 
 .closeButton {
   border: 1px solid;
-  color: #ebf1e6;
-  background-color: #26887d;
+  color: var(--kindawhite);
+  background-color: var(--green);
   border-radius: 0.75rem;
   margin-left: 0.5rem;
   font-size: 0.625rem;
@@ -90,9 +99,9 @@
 .selectedIngredient {
   display: flex;
   align-items: center;
-  background-color: #26887d;
-  padding: 0.5rem;
-  color: #ebf1e6;
+  background-color: var(--green);
+  padding: 0.55rem;
+  color: var(--white);
   border-radius: 0.25rem;
   font-size: 0.75rem;
   margin: 0.25rem;
@@ -101,14 +110,20 @@
 .searchBar {
   display: flex;
   flex-direction: row;
-  border: 1.5px solid #26887d;
+  border: 1.5px solid var(--green);
   border-radius: 0.25rem;
 }
 
 .search {
-  margin: 0.5rem;
-  padding: 0.25rem;
-  border: 1.5px solid #ebf1e6;
+  margin: 0.3rem;
+  padding: 0.15rem;
+  border: 1.5px solid var(--kindawhite);
   border-radius: 0.25rem;
+  font-size: 0.9rem;
+  width: 90%
+}
+
+.matching {
+  margin-top: 0.28rem;
   font-size: 0.9rem;
 }
