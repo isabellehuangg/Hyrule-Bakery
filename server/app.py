@@ -18,12 +18,24 @@ for link in ingredient_links:
     ingredient_array.append(link.text)
 
 # parse for recipe data using beautifulSoup
-recipesurl = 'https://www.ign.com/wikis/the-legend-of-zelda-breath-of-the-wild/All_Recipes_and_Cookbook'
+recipesurl = 'https://rankedboost.com/zelda-tears-of-the-kingdom/dessert-recipe/'
 recipes = requests.get(recipesurl)
 full_page2 = BeautifulSoup(recipes.text, 'html')
-recipe_links = full_page2.find_all()
+recipe_divs = full_page2.find_all('div', 'rbss-object-name-pokedex-css-div')
+ingredients_divs = full_page2.find_all('div', 'rbss-class-skill-desc-data-holder rbss-ztotk')
 
-recipe_array = [] # result of ingr. combo
+# lists in list containing ingredient + recipe 
+recipes_array = [] 
+singular_recipe_array = []
+for recipe_name, list_ingredients in zip(recipe_divs, ingredients_divs):
+    singular_recipe_array.append(recipe_name.text.strip())
+    singular_ingredients = list_ingredients.text.strip().split('\n')
+    singular_ingredients_2 = [ingredient.strip() for ingredient in singular_ingredients if ingredient.strip()]
+    singular_recipe_array.append(singular_ingredients_2)
+    recipes_array.append(singular_recipe_array)
+    singular_recipe_array = []
+
+print(recipes_array)
 
 # connect to PostgreSQL database
 db = psycopg2.connect(
@@ -43,6 +55,31 @@ create_ingredients_table = """
     );
 """
 cur.execute(create_ingredients_table)
+
+# later make ingredients 1 and 2 NOT NULL
+create_recipes_table = """
+    CREATE TABLE IF NOT EXISTS recipes (
+        id SERIAL PRIMARY KEY,
+        recipe VARCHAR(255) NOT NULL,
+        ingredient_1 VARCHAR(255),
+        ingredient_2 VARCHAR(255),
+        ingredient_3 VARCHAR(255),
+        ingredient_4 VARCHAR(255),
+        ingredient_5 VARCHAR(255)
+    )
+"""
+cur.execute(create_recipes_table)
+
+for recipe in recipes_array:
+    name = recipe[0]
+    ingr = recipe[1][:5]
+    while len(ingr) < 5:
+        ingr.append(None)
+
+    cur.execute("""
+        INSERT INTO recipes (recipe, ingredient_1, ingredient_2, ingredient_3, ingredient_4, ingredient_5)
+        VALUES (%s, %s, %s, %s, %s, %s)
+    """, (name, ingr[0], ingr[1], ingr[2], ingr[3], ingr[4]))
 
 for ingredient in ingredient_array:
     cur.execute("INSERT INTO Ingredients (name) VALUES (%s)", (ingredient,))
