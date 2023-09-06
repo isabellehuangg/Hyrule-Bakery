@@ -1,23 +1,10 @@
 import { useState, useEffect } from "react";
-const apiURL = 'http://127.0.0.1:5000'
 
 const SearchBar = () => {
-    // fetch ingredients from backend + db
-    const [ingredients, setIngredients] = useState([]);
+    const ingredients = ['Wheat', 'Sugar', 'Apple', 'Sweetenerrrrrrrr', 'Coffee']; // Sample ingredients
     const [input, setInput] = useState('');
     const [autoIngredients, setAutoIngredients] = useState([]);
     const [selectedIngredients, setSelectedIngredients] = useState([]); 
-
-    useEffect(() => {
-        fetch('/ingredients').then(
-            res => res.json()
-        ).then(
-
-            data => {
-                setIngredients(data)
-            }
-        )
-    }, [])
 
     const handleInput = (e) => {
         const userInput = e.target.value.toLowerCase();
