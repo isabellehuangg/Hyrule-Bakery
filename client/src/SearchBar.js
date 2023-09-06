@@ -1,10 +1,21 @@
 import { useState, useEffect } from "react";
 
 const SearchBar = () => {
-    const ingredients = ['Wheat', 'Sugar', 'Apple', 'Sweetenerrrrrrrr', 'Coffee']; // Sample ingredients
+    const [ingredients, setIngredients] = useState([]);
     const [input, setInput] = useState('');
     const [autoIngredients, setAutoIngredients] = useState([]);
     const [selectedIngredients, setSelectedIngredients] = useState([]); 
+
+    useEffect(() => {
+        fetch('/ingredients').then(
+            res => res.json()
+        ).then(
+
+            data => {
+                setIngredients(data)
+            }
+        )
+    }, [])
 
     const handleInput = (e) => {
         const userInput = e.target.value.toLowerCase();
