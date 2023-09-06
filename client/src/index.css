@@ -81,6 +81,7 @@
 .optionButtons {
   display: flex;
   flex-direction: row;
+  white-space: nowrap;
 }
 
 .closeButton {
@@ -105,6 +106,7 @@
   border-radius: 0.25rem;
   font-size: 0.75rem;
   margin: 0.25rem;
+  white-space: nowrap;
 }
 
 .searchBar {
@@ -120,7 +122,8 @@
   border: 1.5px solid var(--kindawhite);
   border-radius: 0.25rem;
   font-size: 0.9rem;
-  width: 90%
+  width: 90%;
+  overflow: hidden;
 }
 
 .matching {
