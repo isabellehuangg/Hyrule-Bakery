@@ -1,12 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
 import psycopg2
-from flask import Flask, jsonify
-# for creating envr. variables for db connection
+from flask import Flask
 import os
 
 app = Flask(__name__)
-print(os.environ.get('DB_PW'))
 
 def db_connect():
     try:
@@ -117,10 +115,25 @@ def get_ingredients():
         connected.close()
         return all_ingr
 
-@app.route('/api/recipes', methods=["GET"])
-def matching_recipes():
+@app.route('/recipe', methods=["GET"])
+def recipes_names():
     connected = db_connect()
-    # add more
+    if connected:
+        cur = connected.cursor()
+        cur.execute("""SELECT recipe, ingredient_1, ingredient_2, ingredient_3, ingredient_4, ingredient_5 FROM recipes""")
+        data = cur.fetchall()
+        names = []
+        all_5ish_ingredients = []
+        for row in data:
+            all_5ish_ingredients_singular = []
+            names.append(row[0])
+            for i in range(1, 3):
+                ingredient_i = row[i]
+                all_5ish_ingredients_singular.append(ingredient_i)
+            all_5ish_ingredients.append(all_5ish_ingredients_singular)
+        cur.close()
+        connected.close()
+        return names, all_5ish_ingredients
 
 if __name__ == '__main__':
     app.run()

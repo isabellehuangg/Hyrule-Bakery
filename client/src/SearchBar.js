@@ -72,18 +72,36 @@ const SearchBar = () => {
                     )
                 }
             </div>
-            {
-                // Display Ingredients as buttons under the search bar when Ingredients length < 6
-                // value = {input} allows for search bar to empty when chooseOne is called
-                selectedIngredients.length < 5 && (
-                    <div className="optionButtons">
-                        {input.length > 0 && <p className="matching">Matching Ingredients: </p>}
-                        {input.length > 0 && (autoIngredients.map((option) => (
-                            <div key={option} className="option" onClick={() => chooseOne(option)}>
-                                {option}
-                            </div>
-                        )))}
+            <div className="optionButtons">
+                <p className="matching">Matching Ingredients: </p>
+                {input.length > 0 && (autoIngredients.map((option) => (
+                    <div key={option} className="option" onClick={() => chooseOne(option)}>
+                        {option}
                     </div>
+                )))}
+                {(input === "" && selectedIngredients.length !== 5) && (
+                    <div className="nooption">. . .</div>
+                )}
+                {selectedIngredients.length === 5 && (
+                    <div className="nooption">5 ingredients maximum!</div>
+                )}
+            </div>
+            {
+                selectedIngredients.length > 0 && (
+                    <table className="recipeTable">
+                        <thead>
+                            <th className="r1">Result</th>
+                            <th className="r2">Ingredients</th>
+                            <th className="r3">Bookmark</th>
+                        </thead>
+                        <tbody className="body">
+                            <tr>
+                                <td>Recipe Name</td>
+                                <td>Ingredient</td>
+                                <td>Bookmark</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 )
             }
         </div>

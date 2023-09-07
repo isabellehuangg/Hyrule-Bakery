@@ -58,6 +58,8 @@
 .title {
   margin-bottom: 0rem;
   margin-top: 10%;
+  width: max-content;
+  width: 260px;
 }
 
 .description {
@@ -70,7 +72,15 @@
   margin-right: 0.25rem;
   text-decoration: 1px underline;
   font-size: 0.9rem;
-  padding: 0.25rem;
+  padding: 0.25rem 0.25rem 0 0.25rem;
+}
+
+.nooption {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  margin-top: 0.02rem;
+  font-size: 0.9rem;
+  padding: 0.25rem 0.25rem 0 0.25rem;
 }
 
 .option:hover {
@@ -129,4 +139,41 @@
 .matching {
   margin-top: 0.28rem;
   font-size: 0.9rem;
+}
+
+table {
+  width: 100%;
+  margin-top: 0.3rem;
+}
+
+.r1 {
+  width: 25%;
+}
+
+.r2 {
+  width: 65%;
+}
+
+.r3 {
+  width: 10%;
+}
+
+th {
+  font-size: medium;
+  font-weight: 410;
+}
+
+td {
+  text-align: center;
+}
+
+table {
+  border: #56b4a1 1.5px solid;
+  border-collapse: collapse;
+  border-radius: 0.25rem;
+}
+
+th, td {
+  border: #56b4a1 1px solid;
+  padding: 0.3rem;
 }
