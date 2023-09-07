@@ -108,18 +108,18 @@ const SearchBar = () => {
                         <thead>
                             <th className="r1">Result</th>
                             <th className="r2">Ingredients</th>
-                            <th className="r3">Bookmark</th>
                         </thead>
                         <tbody className="body">
-                        {
-                            allRecipes.map((recipe, i) => (
-                                <tr key = {i}>
-                                    <td>{recipe[0]}</td>
-                                    <td>{recipe[1].join(', ')}</td>
-                                    <td>Bookmark</td>
-                                </tr>
-                            ))
-                        }
+                            {allRecipes.filter((recipe) => {
+                                return recipe[1].some((ingredient) => selectedIngredients.includes(ingredient));
+                            }).map((filteredRecipe, i) => {
+                                return (
+                                    <tr key={i}>
+                                        <td>{filteredRecipe[0]}</td>
+                                        <td>{filteredRecipe[1].join(', ')}</td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 )

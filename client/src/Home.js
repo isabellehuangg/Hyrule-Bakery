@@ -5,7 +5,7 @@ const Home = () => {
     return (  
         <div className="home">
             <img src={Zelda} className="title"/>
-            <p className="description">Predict your next dessert, bookmark favorite recipes</p>
+            <p className="description">Find your next dessert to bake in TOTK!</p>
             <SearchBar />
         </div>
     );
