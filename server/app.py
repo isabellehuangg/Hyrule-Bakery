@@ -122,18 +122,9 @@ def recipes_names():
         cur = connected.cursor()
         cur.execute("""SELECT recipe, ingredient_1, ingredient_2, ingredient_3, ingredient_4, ingredient_5 FROM recipes""")
         data = cur.fetchall()
-        names = []
-        all_5ish_ingredients = []
-        for row in data:
-            all_5ish_ingredients_singular = []
-            names.append(row[0])
-            for i in range(1, 3):
-                ingredient_i = row[i]
-                all_5ish_ingredients_singular.append(ingredient_i)
-            all_5ish_ingredients.append(all_5ish_ingredients_singular)
         cur.close()
         connected.close()
-        return names, all_5ish_ingredients
+        return data
 
 if __name__ == '__main__':
     app.run()

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 const SearchBar = () => {
     const [ingredients, setIngredients] = useState([]);
+    const [fullRecipes, setFullRecipes] = useState([]);
     const [input, setInput] = useState('');
     const [autoIngredients, setAutoIngredients] = useState([]);
     const [selectedIngredients, setSelectedIngredients] = useState([]); 
@@ -10,12 +11,21 @@ const SearchBar = () => {
         fetch('/ingredients').then(
             res => res.json()
         ).then(
-
             data => {
                 setIngredients(data)
             }
         )
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        fetch('/recipe').then(
+            res => res.json()
+        ).then(
+            data => {
+                setFullRecipes(data)
+            }
+        )
+    }, []);
 
     const handleInput = (e) => {
         const userInput = e.target.value.toLowerCase();
@@ -52,7 +62,7 @@ const SearchBar = () => {
         if (e.key === 'Enter' && autoIngredients.length > 0 && input.length > 0) {
             chooseOne(autoIngredients[0]);
         }
-    }
+    };
 
     const placeHolder = () => {
         if (selectedIngredients.length < 5) {
@@ -61,6 +71,12 @@ const SearchBar = () => {
             return '';
         }
     };
+
+    // create new array with map function
+    const allRecipes = fullRecipes.map((recipes) => [
+        recipes[0],
+        recipes.slice(1, 5).filter((ingredient) => (ingredient !== null))
+    ]);
 
     return ( 
         <div className="search" onKeyDown={handleEnter}>
@@ -95,11 +111,15 @@ const SearchBar = () => {
                             <th className="r3">Bookmark</th>
                         </thead>
                         <tbody className="body">
-                            <tr>
-                                <td>Recipe Name</td>
-                                <td>Ingredient</td>
-                                <td>Bookmark</td>
-                            </tr>
+                        {
+                            allRecipes.map((recipe, i) => (
+                                <tr key = {i}>
+                                    <td>{recipe[0]}</td>
+                                    <td>{recipe[1].join(', ')}</td>
+                                    <td>Bookmark</td>
+                                </tr>
+                            ))
+                        }
                         </tbody>
                     </table>
                 )
