@@ -32,6 +32,13 @@ def recipes_names():
         connected.close()
         return data
 
+@app.route('/favourites', method=["POST"])
+def new_favourite():
+    return None
+
+@app.route('/favourites', methods=["GET"])
+def view_favourites():
+    return None
+
 if __name__ == '__main__':
     app.run()
-    

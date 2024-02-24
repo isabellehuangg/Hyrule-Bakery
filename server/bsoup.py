@@ -20,14 +20,30 @@ def scrape_recipes():
     ingredients_divs = full_page2.find_all('div', 'rbss-class-skill-desc-data-holder rbss-ztotk')
 
     # lists in list containing ingredient + recipe 
-    recipes_array = [] 
-    singular_recipe_array = []
-    for recipe_name, list_ingredients in zip(recipe_divs, ingredients_divs):
-        singular_recipe_array.append(recipe_name.text.strip())
-        singular_ingredients = list_ingredients.text.strip().split('\n')
-        singular_ingredients_2 = [ingredient.strip() for ingredient in singular_ingredients if ingredient.strip()]
-        singular_recipe_array.append(singular_ingredients_2)
-        recipes_array.append(singular_recipe_array)
-        singular_recipe_array = []
+    all_recipes = [] 
+    for name, ingredients in zip(recipe_divs, ingredients_divs):
+        one_recipe = []
+        one_recipe.append(name.text.strip())
+
+        cleaned_ingredients = ingredients.text.strip().split('\n')
+        cleaned_ingredients_2 = []
+
+        for i, ingredient in enumerate(cleaned_ingredients):
+            if ingredient.strip():
+                cleaned_ingredients_2[i] = ingredient.strip()
+        one_recipe.append(cleaned_ingredients_2)
+
+        all_recipes.append(one_recipe)
+
+    all_with_or = []
+    for recipe in all_recipes:
+        if "or" in any(ingr for ingr in recipe[1]):
+            end = recipe[1][3:]
+            options = [recipe[0], recipe[2]]
+            for option in options:
+                tmp = [option] + end
+                all_with_or.append([recipe[0], tmp])
+        else:
+            all_with_or.append(recipe)
     
-    return recipes_array
+    return all_with_or
